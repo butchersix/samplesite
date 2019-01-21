@@ -1,0 +1,21 @@
+{% load static %}
+<html>
+    <head>
+        <title>
+            {% block head %}
+                this is the title head
+            {% endblock %}
+        </title>
+        <link rel="stylesheet" type="text/css" href="{% static 'polls/materialize/materialize/css/materialize.min.css' %}">
+        <script src="{% static 'polls/materialize/materialize/js/materialize.min.js' %}"></script>
+        {% block scripts %}
+        {% endblock %}
+        {% block styles %}
+        {% endblock %}  
+    </head>
+    <body>
+        {% block body %}
+            123456
+        {% endblock %}
+    </body>
+</html>
