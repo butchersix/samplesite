@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Question
 from .forms import QuestionModelForm
@@ -34,3 +34,17 @@ def update(request, question_id):
     else:
         context['form'] = QuestionModelForm(instance=question)
     return render(request, 'update.html', context)
+
+def create(request):
+    context = {}
+    form = QuestionModelForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('polls:index')
+        else:
+            context['form'] = form
+            return render(request, 'create.html', context)
+    else:
+        context['form'] = form
+    return render(request, 'create.html', context)
